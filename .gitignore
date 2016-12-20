@@ -27,15 +27,8 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 *.sublime-project
 
 # MY FILES
-composer.json
-contributing.md
 err.txt
 keys.txt
 keys_windows.txt
 
 application/config/unive_db.php
-
-public/bootstrap/*
-public/DataTables-1.10.12/*
-public/font-awesome/*
-public/select2/*
