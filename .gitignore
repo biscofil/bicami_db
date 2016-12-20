@@ -33,7 +33,7 @@ err.txt
 keys.txt
 keys_windows.txt
 
-#application/config/unive_db.php
+application/config/unive_db.php
 
 public/bootstrap/*
 public/DataTables-1.10.12/*
