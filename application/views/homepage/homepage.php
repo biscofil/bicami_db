@@ -33,7 +33,7 @@
                 </div>
 
                 <br>
-                <button type="submit" class="btn btn-dark btn-lg">Cerca voli</button>
+                <button id="my_form_submit" type="submit" class="btn btn-dark btn-lg">Cerca voli</button>
             </form>
         </div>
     </div>

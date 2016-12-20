@@ -11,7 +11,11 @@ class Voli extends MyController {
         }
         $da = $_GET['from'];
         $a = $_GET['to'];
-        
+
+        if ($da == $a) {
+            redirect('home');
+        }
+
         $passeggeri = (isset($_GET['passeggeri']) && intval($_GET['passeggeri']) > 0) ? intval($_GET['passeggeri']) : 1;
         $data = (isset($_GET['data'])) ? DateTime::createFromFormat('d/m/Y', $_GET['data']) : new DateTime();
         $classe = (isset($_GET['classe'])) ? $_GET['classe'] : MyController::CLASSE_ALL;
