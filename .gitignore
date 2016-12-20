@@ -1,0 +1,41 @@
+.DS_Store
+
+application/cache/*
+!application/cache/index.html
+!application/cache/.htaccess
+
+application/logs/*
+!application/logs/index.html
+!application/logs/.htaccess
+
+user_guide_src/build/*
+user_guide_src/cilexer/build/*
+user_guide_src/cilexer/dist/*
+user_guide_src/cilexer/pycilexer.egg-info/*
+/vendor/
+
+# IDE Files
+#-------------------------
+/nbproject/
+.idea/*
+
+## Sublime Text cache files
+*.tmlanguage.cache
+*.tmPreferences.cache
+*.stTheme.cache
+*.sublime-workspace
+*.sublime-project
+
+# MY FILES
+composer.json
+contributing.md
+err.txt
+keys.txt
+keys_windows.txt
+
+application/config/unive_db.php
+
+public/bootstrap/*
+public/DataTables-1.10.12/*
+public/font-awesome/*
+public/select2/*
