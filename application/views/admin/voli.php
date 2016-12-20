@@ -34,7 +34,7 @@
                     <div class="form-group">
                         <label for="gate" class="col-sm-2 control-label">GATE:</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="gate"  required>
+                            <input type="number" min="0" step="1" class="form-control" id="gate"  required>
                         </div>
                     </div>
                     <div class="form-group">
