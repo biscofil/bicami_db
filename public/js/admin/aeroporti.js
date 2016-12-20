@@ -119,7 +119,7 @@ $(document).ready(function () {
                 _modal.find("#citta").append('<option value="' + data.aeroporto.id_citta + '" selected="selected">' + data.aeroporto.nome_citta + '</option>');
                 _modal.find("#citta").trigger('change');
                 
-                modal.modal('show');
+                _modal.modal('show');
             } else {
                 $.notify(data.error, "error");
             }

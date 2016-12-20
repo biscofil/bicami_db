@@ -116,7 +116,7 @@ $(document).ready(function () {
                 _modal.find("#id_paese").append('<option value="' + data.compagnia.nazionalita + '" selected="selected">' + data.compagnia.nazionalita + '</option>');
                 _modal.find("#id_paese").trigger('change');
 
-                modal.modal('show');
+                _modal.modal('show');
             } else {
                 $.notify(data.error, "error");
             }
