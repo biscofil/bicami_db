@@ -218,7 +218,7 @@ class Mypghelper {
 
     function eliminaTratte($_ids) {
         $stmt = $this->connection->prepare("SELECT * FROM elimina_tratte(?)");
-        $stmt->execute(pg_array($_ids));
+        $stmt->execute(array(pg_array($_ids)));
         $count = $stmt->rowCount();
         return $count > 0;
     }
