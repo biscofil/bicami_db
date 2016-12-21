@@ -32,7 +32,7 @@
             <div class="modal-body">
                 <form class="form-horizontal">
                     <div class="form-group">
-                        <label for="gate" class="col-sm-2 control-label">GATE:</label>
+                        <label for="gate" class="col-sm-2 control-label">GATE: (numerico)</label>
                         <div class="col-sm-10">
                             <input type="number" min="0" step="1" class="form-control" id="gate"  required>
                         </div>

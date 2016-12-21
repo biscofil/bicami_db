@@ -157,17 +157,30 @@ $(document).ready(function () {
             }
         }).done(function (data) {
             if (data.result === 1) {
-                _modal.find("#posti").val(data.prenotazione.num_posti_prenotati);
 
-                _modal.find("#id_utente").append('<option value="' + data.prenotazione.id_utente + '" selected="selected">' + data.prenotazione.id_utente + '</option>');
-                _modal.find("#id_utente").trigger('change');
 
-                _modal.find("#id_volo").append('<option value="' + data.prenotazione.id_volo_pianificato + '" selected="selected">' + data.prenotazione.id_volo_pianificato + '</option>');
-                _modal.find("#id_volo").trigger('change');
+                $.ajax({
+                    type: "POST",
+                    cache: false,
+                    url: __site_url + "/" + __xhr_controller + "/xhr_utente",
+                    data: {
+                        'id': data.prenotazione.id_utente
+                    }
+                }).done(function (data2) {
 
-                _modal.find("#classe").val(data.prenotazione.classe).trigger('change');
+                    _modal.find("#posti").val(data.prenotazione.num_posti_prenotati);
 
-                _modal.modal('show');
+                    _modal.find("#id_utente").append('<option value="' + data.prenotazione.id_utente + '" selected="selected">' + data2.utente.nome + " " + data2.utente.cognome + '</option>');
+                    _modal.find("#id_utente").trigger('change');
+
+                    _modal.find("#id_volo").append('<option value="' + data.prenotazione.id_volo_pianificato + '" selected="selected">' + data.prenotazione.id_volo_pianificato + '</option>');
+                    _modal.find("#id_volo").trigger('change');
+
+                    _modal.find("#classe").val(data.prenotazione.classe).trigger('change');
+
+                    _modal.modal('show');
+                });
+
             } else {
                 $.notify(data.error, "error");
             }

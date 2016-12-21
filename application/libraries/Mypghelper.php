@@ -101,7 +101,6 @@ class Mypghelper {
     ///aeroporti
 
     public function searchAeroporto($s) {
-        // MY_TODO: to pg func select
         $search = strtolower($s);
         $stmt = $this->connection->prepare(
                 "SELECT aeroporti.sigla, aeroporti.nome, cities_countries.* FROM aeroporti "
@@ -243,77 +242,22 @@ class Mypghelper {
         return $this->fetch($stmt);
     }
 
-    function searchVoli_old($from, $to, $passeggeri, DateTime $data, $classe, $page = 0) {
-        $per_page = 10;
-        // MY_TODO: to pg func + sistemare e utilizzare voli_posti_2
-        $q = "SELECT voli_pianificati.data_ora,voli_pianificati.id,voli.*,compagnie.nome AS nome_compagnia,voli_posti.prenotati_business,"
-                . "voli_posti.prenotati_economy,tipi_aeroplani.posti_economy,tipi_aeroplani.posti_business,"
-                . "(tipi_aeroplani.posti_economy - voli_posti.prenotati_economy) as liberi_economy,(tipi_aeroplani.posti_business - voli_posti.prenotati_business) as liberi_business FROM voli_pianificati "
-                . "LEFT JOIN voli ON voli.codice = voli_pianificati.codice_volo "
-                . "LEFT JOIN compagnie ON compagnie.id = voli.cod_compagnia "
-                . "LEFT JOIN voli_posti ON voli_posti.id_volo_pianificato = voli_pianificati.id "
-                . "LEFT JOIN tipi_aeroplani ON tipi_aeroplani.id = voli.tipo_aeroplano "
-                . "WHERE aeroporto_partenza = ? AND aeroporto_arrivo = ? "
-                . "AND data_ora > ? AND ";
-
-        if ($classe == MyController::CLASSE_ALL) {
-            //tutte le classi
-            $q .= "(tipi_aeroplani.posti_economy - voli_posti.prenotati_economy >= ? OR tipi_aeroplani.posti_business - voli_posti.prenotati_business >= ?)";
-        } elseif ($classe == MyController::CLASSE_ECONOMY) {
-            //economy
-            $q .= "tipi_aeroplani.posti_economy - voli_posti.prenotati_economy >= ?";
-        } else {
-            //business
-            $q .= "tipi_aeroplani.posti_business - voli_posti.prenotati_business >= ?";
-        }
-
-        $q .= " ORDER BY voli_pianificati.data_ora ASC LIMIT $per_page OFFSET " . ($per_page * $page);
-
-        $stmt = $this->connection->prepare($q); // AND data >= ?");
-        $stmt->bindValue(1, $from, PDO::PARAM_STR);
-        $stmt->bindValue(2, $to, PDO::PARAM_STR);
-        $stmt->bindValue(3, DateTime_ts_no_tz($data), PDO::PARAM_STR);
-
-        if ($classe == MyController::CLASSE_ALL) {
-            //tutte le classi
-            $stmt->bindValue(4, $passeggeri, PDO::PARAM_STR);
-            $stmt->bindValue(5, $passeggeri, PDO::PARAM_STR);
-        } elseif ($classe == MyController::CLASSE_ECONOMY) {
-            //economy
-            $stmt->bindValue(4, $passeggeri, PDO::PARAM_STR);
-        } else {
-            //business
-            $stmt->bindValue(4, $passeggeri, PDO::PARAM_STR);
-        }
-
-        $stmt->execute();
-        return $this->fetch($stmt);
-    }
-
     function searchVoli($from, $to, $passeggeri, DateTime $data, $classe, $page = 0) {
         $per_page = 10;
-        // MY_TODO: to pg func + sistemare
-        $q = "SELECT voli_pianificati.data_ora,voli_pianificati.id,voli.*,compagnie.nome AS nome_compagnia,"
-                . "voli_posti_2.prenotati_economy,voli_posti_2.prenotati_business,"
-                . "voli_posti_2.liberi_economy,voli_posti_2.liberi_business FROM voli_pianificati "
-                . "LEFT JOIN voli ON voli.codice = voli_pianificati.codice_volo "
-                . "LEFT JOIN compagnie ON compagnie.id = voli.cod_compagnia "
-                . "LEFT JOIN voli_posti_2 ON voli_posti_2.id_volo_pianificato = voli_pianificati.id "
-                . "WHERE aeroporto_partenza = ? AND aeroporto_arrivo = ? "
-                . "AND data_ora > ? AND ";
+        $q = "SELECT * FROM pian_voli_tipi_posti_comp WHERE aeroporto_partenza = ? AND aeroporto_arrivo = ? AND data_ora > ? AND ";
 
         if ($classe == MyController::CLASSE_ALL) {
             //tutte le classi
-            $q .= "(voli_posti_2.liberi_economy >= ? OR voli_posti_2.liberi_business >= ?)";
+            $q .= "(liberi_economy >= ? OR liberi_business >= ?)";
         } elseif ($classe == MyController::CLASSE_ECONOMY) {
             //economy
-            $q .= "voli_posti_2.liberi_economy >= ?";
+            $q .= "liberi_economy >= ?";
         } else {
             //business
-            $q .= "voli_posti_2.liberi_business >= ?";
+            $q .= "liberi_business >= ?";
         }
 
-        $q .= " ORDER BY voli_pianificati.data_ora ASC LIMIT $per_page OFFSET " . ($per_page * $page);
+        $q .= " ORDER BY data_ora ASC LIMIT $per_page OFFSET " . ($per_page * $page);
 
         $stmt = $this->connection->prepare($q); // AND data >= ?");
         $stmt->bindValue(1, $from, PDO::PARAM_STR);
