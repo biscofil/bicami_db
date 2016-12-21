@@ -71,7 +71,7 @@ function codeAddress(address1, address2) {
                     });
 
                     var flightPath = new google.maps.Polyline({
-                        path: [posa, posb],
+                        path: [posa, pos],
                         geodesic: true,
                         strokeColor: '#FF0000',
                         strokeOpacity: 1.0,
