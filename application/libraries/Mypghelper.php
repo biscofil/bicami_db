@@ -237,7 +237,7 @@ class Mypghelper {
                 "SELECT voli_pianificati.id, voli_pianificati.data_ora, voli_compagnie_aeroplani.* "
                 . "FROM voli_pianificati INNER JOIN voli_compagnie_aeroplani "
                 . "ON voli_compagnie_aeroplani.codice = codice_volo "
-                . "WHERE codice_volo LIKE ? OR nome_compagnia LIKE ? OR nome_aeroplano LIKE ? LIMIT 10");
+                . "WHERE LOWER(codice_volo) LIKE ? OR LOWER(nome_compagnia) LIKE ? OR LOWER(nome_aeroplano) LIKE ? LIMIT 10");
         $stmt->execute(array("%$search%", "%$search%", "%$search%"));
         return $this->fetch($stmt);
     }

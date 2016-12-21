@@ -95,9 +95,6 @@
                                 <li>
                                     <a href="<?= site_url('statistiche') ?>" onclick=$("#menu-close").click();>Statistiche</a>
                                 </li>
-                                <li>
-                                    <a href="https://docs.google.com/a/stud.unive.it/document/d/1ZLwRXaRB1ftsuGi88dvlbpBAVFjQzzOg8uDIgAqcxoQ/edit?usp=sharing">BUGS</a>
-                                </li>
                             </ul>
                         </li>
                         <?php
@@ -121,7 +118,7 @@
         <?php if (Alert::atLeastOne()): ?>
             <div class="container">
                 <div class="row">
-                    <div class="col-md-12"> 
+                    <div class="col-md-12">
                         <?php Alert::printAll(); ?>
                     </div>
                 </div>
