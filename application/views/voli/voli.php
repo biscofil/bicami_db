@@ -34,10 +34,6 @@
     </div>
 </section>
 
-<?php
-// MY_TODO pagination
-?>
-
 <section id="contact" class="map">
     <div id="map" width="100%" height="100%"></div>
 </section>

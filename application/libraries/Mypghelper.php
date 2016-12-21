@@ -243,7 +243,7 @@ class Mypghelper {
     }
 
     function searchVoli($from, $to, $passeggeri, DateTime $data, $classe, $page = 0) {
-        $per_page = 10;
+        $per_page = 30;
         $q = "SELECT * FROM pian_voli_tipi_posti_comp WHERE aeroporto_partenza = ? AND aeroporto_arrivo = ? AND data_ora > ? AND ";
 
         if ($classe == MyController::CLASSE_ALL) {
