@@ -20,9 +20,6 @@
                 <h1>Tratte e voli</h1>
                 <div id="graph6"></div>
 
-                <h1>Mete italiane</h1>
-                <div id="graph7"></div>
-
             </div>
             <!-- /.col-lg-10 -->
         </div>

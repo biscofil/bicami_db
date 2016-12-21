@@ -452,10 +452,4 @@ class Mypghelper {
         return $this->fetch($stmt);
     }
 
-    function stat_mete_italiane() {
-        $stmt = $this->connection->prepare("SELECT * FROM mete_italiane");
-        $stmt->execute();
-        return $this->fetch($stmt);
-    }
-
 }

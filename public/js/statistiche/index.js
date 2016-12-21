@@ -43,16 +43,3 @@ Morris.Bar({
     ykeys: ['v'],
     labels: ['voli']
 });
-
-//
-
-var d7 = [];
-
-for (var i = 0; i < __stat_mete_italiane.length; i++) {
-    d7.push({label: __stat_mete_italiane[i][0], value: __stat_mete_italiane[i][1]});
-}
-
-Morris.Donut({
-    element: 'graph7',
-    data: d7
-});
