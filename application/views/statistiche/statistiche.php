@@ -11,9 +11,6 @@
         <div class="row">
             <div class="col-lg-12 text-center">
 
-                <h1>stat_passeggeriTrasportatiAeroporto</h1>
-                <div id="graph3"></div>
-
                 <h1>Arrivi e partenze per gli aeroporti</h1>
                 <div id="graph4"></div>
 
