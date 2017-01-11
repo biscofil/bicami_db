@@ -488,7 +488,8 @@ class Xhr extends XhrController {
                 $tratte = $this->mypghelper->getTratte();
                 $gate = rand(1, 10);
                 $data = new DateTime();
-                $hours = rand(5, 72);
+                $data->sub(new DateInterval('PT10H'));
+                $hours = rand(0, 100);
                 $data->add(new DateInterval('PT' . $hours . 'H'));
                 $ritardo = rand(0, 60);
                 $cancellato = rand(0, 10) > 8 ? 1 : 0;
